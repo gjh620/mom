@@ -12,47 +12,105 @@
         }
 
         body {
-            background: #fff7f2;
-            font-family: 'Georgia', 'Times New Roman', '宋体', 'Segoe UI', 'Roboto', serif;
+            background: #f5e6d3;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 30px 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            padding: 20px;
         }
 
-        .card {
+        /* 信封容器 */
+        .envelope-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        /* 信封样式 */
+        .envelope {
+            background: #e8c4a0;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .envelope-top {
+            background: #d4a373;
+            height: 180px;
+            position: relative;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            transition: transform 0.5s ease;
+            transform-origin: top;
+        }
+
+        .envelope-body {
+            background: #f4d3b3;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .envelope-body h2 {
+            color: #b45a40;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .envelope-body p {
+            color: #8b5a3c;
+            font-size: 1rem;
+        }
+
+        .click-hint {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #b45a40;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* 内容卡片（初始隐藏） */
+        .content-card {
             max-width: 700px;
             width: 100%;
             background: #ffffff;
             border-radius: 56px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.08);
             padding: 40px 32px 50px;
             text-align: center;
-            transition: all 0.2s ease;
             border: 1px solid #ffe3d6;
+            display: none;
         }
 
         .flower-icon {
             font-size: 64px;
             margin-bottom: 20px;
-            display: inline-block;
             animation: gentleFloat 3s ease-in-out infinite;
         }
 
         @keyframes gentleFloat {
-            0% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-6px); }
-            100% { transform: translateY(0px); }
         }
 
         .greeting {
             font-size: 2.6rem;
             color: #b45a40;
-            letter-spacing: 2px;
-            font-weight: normal;
             margin-bottom: 20px;
-            font-family: 'Georgia', cursive;
         }
 
         .greeting small {
@@ -60,8 +118,6 @@
             display: block;
             color: #cc8062;
             margin-top: 10px;
-            font-style: italic;
-            font-weight: normal;
         }
 
         .poem {
@@ -70,7 +126,6 @@
             padding: 32px 28px;
             margin: 28px 0;
             text-align: left;
-            box-shadow: inset 0 0 0 1px #fff4ed, 0 12px 22px rgba(110, 55, 35, 0.04);
         }
 
         .poem p {
@@ -78,7 +133,6 @@
             line-height: 1.85;
             margin-bottom: 24px;
             color: #3e2c25;
-            font-weight: 440;
             border-left: 4px solid #f2bc9a;
             padding-left: 20px;
         }
@@ -92,17 +146,12 @@
             padding: 14px 18px;
             margin-top: 16px;
             text-align: center;
-            border-left: none;
-            letter-spacing: 1px;
         }
 
         .blessing {
             margin: 30px 0 20px;
             font-size: 2rem;
-            font-weight: bold;
             color: #c47252;
-            line-height: 1.3;
-            letter-spacing: 2px;
         }
 
         .blessing span {
@@ -111,15 +160,12 @@
             padding: 8px 24px;
             border-radius: 60px;
             font-size: 1.45rem;
-            font-weight: 500;
         }
 
         .happy-mom-day {
             font-size: 1.9rem;
             margin-top: 20px;
             color: #d38462;
-            font-weight: 500;
-            letter-spacing: 2px;
         }
 
         .footer-sign {
@@ -134,8 +180,25 @@
             flex-wrap: wrap;
         }
 
+        .music-btn {
+            margin-top: 25px;
+            background: #fef0e8;
+            border: 1px solid #f2bc9a;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            color: #b45a40;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-btn:hover {
+            background: #f2bc9a;
+            color: white;
+        }
+
         @media (max-width: 550px) {
-            .card {
+            .content-card {
                 padding: 28px 20px 38px;
             }
             .greeting {
@@ -144,54 +207,121 @@
             .poem p {
                 font-size: 1rem;
                 padding-left: 14px;
-                margin-bottom: 20px;
             }
             .blessing span {
                 font-size: 1.1rem;
-                padding: 5px 18px;
             }
             .happy-mom-day {
                 font-size: 1.5rem;
             }
-            .flower-icon {
-                font-size: 52px;
+            .envelope-top {
+                height: 140px;
             }
-            .special-line {
-                font-size: 1rem;
+            .envelope-body {
+                height: 180px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="flower-icon">🌷🌸🌷</div>
 
-        <div class="greeting">
-            亲爱的老妈
-            <small>你先是你自己，然后才是我的妈妈</small>
-        </div>
-
-        <div class="poem">
-            <p>🌿 我用一辈子和你说再见，<br>你却用一生祈祷我平安。</p>
-            <p>🌌 宇宙洪荒，生命浩瀚，<br>但只有你和我，共享过心跳。</p>
-            <p>🌲 你是坚韧的大树，也是温柔的阳光；<br>人生路上，人来人往，唯有母爱始终如一。</p>
-            <div class="special-line">
-                ❤️ 谢谢您，选择成为我的妈妈 ❤️
-            </div>
-        </div>
-
-        <div class="blessing">
-            <span>🌟 祝妈妈万事顺遂，福如安康 🌟</span>
-        </div>
-
-        <div class="happy-mom-day">
-            💐 母亲节快乐 💐
-        </div>
-
-        <div class="footer-sign">
-            <span>🏡 永远爱您的孩子</span>
-            <span>📆 每一天都是母亲节</span>
+<!-- 信封封面 -->
+<div id="envelopeContainer" class="envelope-container">
+    <div class="envelope">
+        <div class="envelope-top"></div>
+        <div class="envelope-body">
+            <h2>✉️ 给亲爱的老妈</h2>
+            <p>点击拆开信封，听听我的心声</p>
+            <div class="click-hint">👇 点击信封 👇</div>
         </div>
     </div>
+</div>
+
+<!-- 祝福内容（初始隐藏） -->
+<div id="contentCard" class="content-card">
+    <div class="flower-icon">🌷🌸🌷</div>
+
+    <div class="greeting">
+        亲爱的老妈
+        <small>你先是你自己，然后才是我的妈妈</small>
+    </div>
+
+    <div class="poem">
+        <p>🌿 我用一辈子和你说再见，<br>你却用一生祈祷我平安。</p>
+        <p>🌌 宇宙洪荒，生命浩瀚，<br>但只有你和我，共享过心跳。</p>
+        <p>🌲 你是坚韧的大树，也是温柔的阳光；<br>人生路上，人来人往，唯有母爱始终如一。</p>
+        <div class="special-line">
+            ❤️ 谢谢您，选择成为我的妈妈 ❤️
+        </div>
+    </div>
+
+    <div class="blessing">
+        <span>🌟 祝妈妈万事顺遂，福如安康 🌟</span>
+    </div>
+
+    <div class="happy-mom-day">
+        💐 母亲节快乐 💐
+    </div>
+
+    <div class="footer-sign">
+        <span>🏡 永远爱您的孩子</span>
+        <span>📆 每一天都是母亲节</span>
+    </div>
+
+    <button class="music-btn" id="musicBtn">🎵 播放音乐 🎵</button>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    const envelope = document.getElementById('envelopeContainer');
+    const content = document.getElementById('contentCard');
+    let isOpened = false;
+    let musicPlaying = false;
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // 点击信封：打开并显示内容
+    envelope.addEventListener('click', function() {
+        if (!isOpened) {
+            isOpened = true;
+            // 信封淡出消失
+            envelope.style.opacity = '0';
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                content.style.display = 'block';
+                content.style.animation = 'fadeIn 1s ease';
+            }, 400);
+        }
+    });
+
+    // 添加淡入动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // 音乐播放（需要用户点击）
+    musicBtn.addEventListener('click', function() {
+        if (!musicPlaying) {
+            music.play().then(() => {
+                musicPlaying = true;
+                musicBtn.textContent = '🎵 音乐播放中 🎵';
+            }).catch(() => {
+                alert('点击确定，让音乐响起来吧 🌸');
+                musicBtn.textContent = '🎵 再点一次播放 🎵';
+            });
+        } else {
+            music.pause();
+            musicPlaying = false;
+            musicBtn.textContent = '🎵 播放音乐 🎵';
+        }
+    });
+</script>
 </body>
 </html>
