@@ -89,7 +89,7 @@
             50%{transform:translateY(-6px)}
         }
         .greeting {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #b45a40;
             margin-bottom: 20px;
             line-height: 1.3;
@@ -108,16 +108,15 @@
             text-align: left;
         }
         .poem p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.85;
             margin-bottom: 18px;
             color: #3e2c25;
             border-left: 4px solid #f2bc9a;
             padding-left: 20px;
-            text-indent: 0;
         }
         .special-line {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 520;
             color: #b45a40;
             background: #fff0e6;
@@ -158,7 +157,7 @@
             margin-top: 25px;
             background: #fef0e8;
             border: 1px solid #f2bc9a;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 40px;
             font-size: 1rem;
             color: #b45a40;
@@ -175,12 +174,12 @@
                 max-height: 90vh;
             }
             .greeting {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             .poem p {
-                font-size: 0.95rem;
+                font-size: 0.92rem;
                 padding-left: 14px;
-                margin-bottom: 16px;
+                margin-bottom: 14px;
             }
             .blessing span {
                 font-size: 1rem;
@@ -195,7 +194,7 @@
                 height: 180px;
             }
             .special-line {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -242,7 +241,8 @@
     </div>
     <button class="music-btn" id="musicBtn">🎵 播放舒缓轻音乐 🎵</button>
     <audio id="bgMusic" loop preload="auto">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <!-- 舒缓抒情的钢琴轻音乐 - 公开可用 -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
     </audio>
 </div>
 
@@ -276,7 +276,7 @@
                 musicPlaying = true;
                 musicBtn.textContent = '🎵 音乐播放中 🎵';
             }).catch(() => {
-                alert('🎶 妈妈，母亲节快乐，愿你每一天都温暖如初 🎶');
+                alert('🎶 妈妈，愿这首歌陪你度过温暖的时光 🎶');
             });
         } else {
             music.pause();
